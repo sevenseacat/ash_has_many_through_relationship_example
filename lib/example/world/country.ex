@@ -32,7 +32,15 @@ defmodule Example.World.Country do
 
     has_many :landmarks, Example.World.Landmark do
       no_attributes? true
+
+      # "fetch landmarks that have their city's region's `country_id` field
+      #  matching my `id` field"
       filter expr(city.region.country_id == parent(id))
+
+      # an alternative implementation:
+      # "fetch landmarks that have a `city_id` value in the list of my related
+      #  cities' `id` values"
+      # filter expr(city_id in parent(cities.id))
     end
   end
 
