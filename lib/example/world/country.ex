@@ -29,6 +29,16 @@ defmodule Example.World.Country do
       no_attributes? true
       filter expr(region.country_id == parent(id))
     end
+
+    has_many :landmarks, Example.World.Landmark do
+      no_attributes? true
+      filter expr(city.region.country_id == parent(id))
+    end
+  end
+
+  aggregates do
+    count :city_count, :cities
+    count :landmark_count, :landmarks
   end
 
   identities do
