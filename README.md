@@ -1,21 +1,26 @@
-# Example
+# Ash `through` relationship example
 
-**TODO: Add description**
+An example showing how to create a `through` relationship, demonstrated with countries, regions, cities, and landmarks.
 
-## Installation
+I wrote more about this in a blog post, [Modelling `through` relationships with Ash](http://sevenseacat.net/posts/2024/through-relationships-with-ash/)
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `example` to your list of dependencies in `mix.exs`:
+## Setup
 
-```elixir
-def deps do
-  [
-    {:example, "~> 0.1.0"}
-  ]
-end
+```
+$ git clone git@github.com:sevenseacat/ash_through_relationship_example.git
+$ cd ash_through_relationship_example
+$ mix deps.get
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/example>.
+## Run
 
+```
+$ mix ash.setup
+$ mix run priv/repo/seeds/*.exs
+```
+
+Then you can test queries in `iex`, eg:
+
+```iex
+iex(1) Ash.get!(Example.World.Country, %{name: "Australia"}, load: [:city_count])
+```
