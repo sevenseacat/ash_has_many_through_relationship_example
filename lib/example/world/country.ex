@@ -24,6 +24,11 @@ defmodule Example.World.Country do
 
   relationships do
     has_many :regions, Example.World.Region
+
+    has_many :cities, Example.World.City do
+      no_attributes? true
+      filter expr(region.country_id == parent(id))
+    end
   end
 
   identities do
