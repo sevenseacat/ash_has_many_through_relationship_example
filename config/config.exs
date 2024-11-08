@@ -1,6 +1,6 @@
 import Config
 
-config :example, ecto_repos: [Example.Repo]
+config :example, ecto_repos: [Example.Repo], ash_domains: [Example.World]
 
 config :ash,
   include_embedded_source_by_default?: false,
